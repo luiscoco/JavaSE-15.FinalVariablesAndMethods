@@ -102,3 +102,55 @@ class SubClass extends MyClass {
 The primary use of final classes, methods, and variables is to ensure that certain aspects of your code remain unchanged. 
 
 This can contribute to code safety, optimization, or design considerations.
+
+# Difference between Final Classes and Sealed Classes
+
+ In Java, both final classes and sealed classes provide mechanisms to control class inheritance, but they differ in their flexibility and purpose.
+
+## Final Classes:
+
+Immutability: A final class cannot be subclassed or extended. Once a class is marked as final, it means that no other class can inherit from it.
+
+```java
+final class FinalClass {
+    // Class members and methods
+}
+```
+
+Use Cases:
+
+- When you want to prevent further extension of a class.
+
+- When you want to ensure that the class cannot be overridden or modified.
+
+## Sealed Classes
+
+Limited Subclassing: A sealed class allows you to specify which classes can be subclasses. 
+
+You can explicitly declare which subclasses are allowed, and any other attempt to subclass it will result in a compilation error.
+
+```java
+sealed class SealedClass permits SubClass1, SubClass2 {
+    // Class members and methods
+}
+
+final class SubClass1 extends SealedClass {
+    // Subclass 1 implementation
+}
+
+final class SubClass2 extends SealedClass {
+    // Subclass 2 implementation
+}
+```
+
+Use Cases:
+
+- When you want to control and limit the hierarchy of subclasses.
+
+- When you want to provide a set of known subclasses and prevent external classes from extending the sealed class.
+
+In summary, while **final classes** prevent any subclassing, **sealed classes** allow you to specify a limited set of subclasses. 
+
+Sealed classes provide more flexibility in terms of inheritance while still maintaining control over the hierarchy. 
+
+The choice between them depends on the design requirements and the level of control you want over the class hierarchy.
